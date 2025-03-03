@@ -2,12 +2,16 @@ import pandas as pd
 import glob
 
 class DataLoader:
-    def __init__(self, file_paths):
-        self.file_paths = file_paths
+    def __init__(self, file_pattern):
+        self.file_pattern = file_pattern
+        self.file_paths = glob.glob(self.file_pattern)  # Get all matching files
         self.data = None
     
     def load_files(self):
         """Reads and merges all specified CSV files."""
+        if not self.file_paths:
+            print("No files found matching the pattern.")
+            return
         df_list = [pd.read_csv(file) for file in self.file_paths]
         self.data = pd.concat(df_list, ignore_index=True)
     
@@ -24,8 +28,8 @@ class DataLoader:
         return None
 
 # Usage
-file_paths = ['/mnt/data/DL039.csv', '/mnt/data/DL040.csv']
-data_loader = DataLoader(file_paths)
+file_pattern = '/Users/deepak.kumar2/Downloads/Archive2/DL*.csv'  # Adjusted to match multiple files
+data_loader = DataLoader(file_pattern)
 data_loader.load_files()
 
 print("Dataset Shape:", data_loader.get_shape())
