@@ -28,7 +28,7 @@ class DataLoader:
         return None
 
 # Usage
-file_pattern = '/Users/deepak.kumar2/Downloads/Archive2/DL*.csv'  # Adjusted to match multiple files
+file_pattern = '/Users/deepak.kumar2/Downloads/Archive 2/DL*.csv'  # Adjusted to match multiple files
 data_loader = DataLoader(file_pattern)
 data_loader.load_files()
 
